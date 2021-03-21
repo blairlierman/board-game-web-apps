@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "farming-game-remote": {
+      "hosting": {
+        "farming-game-remote-host": [
+          "farming-game-remote"
+        ]
+      }
+    }
+  }
+}
