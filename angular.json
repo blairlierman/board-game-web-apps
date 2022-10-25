@@ -28,7 +28,10 @@
               "apps/farming-game-remote-host/src/favicon.ico",
               "apps/farming-game-remote-host/src/assets"
             ],
-            "styles": ["apps/farming-game-remote-host/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "apps/farming-game-remote-host/src/styles.scss"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -96,7 +99,10 @@
               "apps/farming-game-remote-host/src/favicon.ico",
               "apps/farming-game-remote-host/src/assets"
             ],
-            "styles": ["apps/farming-game-remote-host/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "apps/farming-game-remote-host/src/styles.scss"
+            ],
             "scripts": []
           }
         },
@@ -129,7 +135,9 @@
           }
         }
       },
-      "implicitDependencies": ["farming-game-remote-host"],
+      "implicitDependencies": [
+        "farming-game-remote-host"
+      ],
       "tags": []
     },
     "sff-tracker": {
@@ -140,7 +148,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/sff-tracker",
             "index": "apps/sff-tracker/src/index.html",
@@ -152,7 +162,10 @@
               "apps/sff-tracker/src/favicon.ico",
               "apps/sff-tracker/src/assets"
             ],
-            "styles": ["apps/sff-tracker/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "apps/sff-tracker/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -217,7 +230,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/sff-tracker"],
+          "outputs": [
+            "coverage/apps/sff-tracker"
+          ],
           "options": {
             "jestConfig": "apps/sff-tracker/jest.config.ts",
             "passWithNoTests": true
@@ -246,14 +261,20 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/sff-tracker-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/sff-tracker-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["sff-tracker"]
+      "implicitDependencies": [
+        "sff-tracker"
+      ]
     }
   }
 }

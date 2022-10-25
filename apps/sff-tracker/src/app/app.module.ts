@@ -6,6 +6,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { HomeComponentModule } from './pages/home/home.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [{ path: '**', component: HomeComponent }];
 
@@ -15,6 +16,7 @@ const routes: Routes = [{ path: '**', component: HomeComponent }];
     BrowserModule,
     HomeComponentModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
