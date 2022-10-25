@@ -28,9 +28,7 @@
               "apps/farming-game-remote-host/src/favicon.ico",
               "apps/farming-game-remote-host/src/assets"
             ],
-            "styles": [
-              "apps/farming-game-remote-host/src/styles.scss"
-            ],
+            "styles": ["apps/farming-game-remote-host/src/styles.scss"],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -98,9 +96,7 @@
               "apps/farming-game-remote-host/src/favicon.ico",
               "apps/farming-game-remote-host/src/assets"
             ],
-            "styles": [
-              "apps/farming-game-remote-host/src/styles.scss"
-            ],
+            "styles": ["apps/farming-game-remote-host/src/styles.scss"],
             "scripts": []
           }
         },
@@ -133,10 +129,131 @@
           }
         }
       },
-      "implicitDependencies": [
-        "farming-game-remote-host"
-      ],
+      "implicitDependencies": ["farming-game-remote-host"],
       "tags": []
+    },
+    "sff-tracker": {
+      "projectType": "application",
+      "root": "apps/sff-tracker",
+      "sourceRoot": "apps/sff-tracker/src",
+      "prefix": "farming-game-remote-host",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/sff-tracker",
+            "index": "apps/sff-tracker/src/index.html",
+            "main": "apps/sff-tracker/src/main.ts",
+            "polyfills": "apps/sff-tracker/src/polyfills.ts",
+            "tsConfig": "apps/sff-tracker/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/sff-tracker/src/favicon.ico",
+              "apps/sff-tracker/src/assets"
+            ],
+            "styles": ["apps/sff-tracker/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/sff-tracker/src/environments/environment.ts",
+                  "with": "apps/sff-tracker/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "sff-tracker:build:production"
+            },
+            "development": {
+              "browserTarget": "sff-tracker:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sff-tracker:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/sff-tracker/**/*.ts",
+              "apps/sff-tracker/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/sff-tracker"],
+          "options": {
+            "jestConfig": "apps/sff-tracker/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "sff-tracker-e2e": {
+      "root": "apps/sff-tracker-e2e",
+      "sourceRoot": "apps/sff-tracker-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/sff-tracker-e2e/cypress.config.ts",
+            "devServerTarget": "sff-tracker:serve:development",
+            "testingType": "e2e"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sff-tracker:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/sff-tracker-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["sff-tracker"]
     }
   }
 }
