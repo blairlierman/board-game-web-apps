@@ -144,7 +144,7 @@
       "projectType": "application",
       "root": "apps/sff-tracker",
       "sourceRoot": "apps/sff-tracker/src",
-      "prefix": "farming-game-remote-host",
+      "prefix": "sff",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
