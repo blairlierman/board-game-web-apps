@@ -1,0 +1,21 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'sff-touch-number-spinner',
+  templateUrl: './touch-number-spinner.component.html',
+  styleUrls: ['./touch-number-spinner.component.scss'],
+})
+export class TouchNumberSpinnerComponent implements OnInit {
+  //#region Reactive Forms Setup
+  readonly formBuilder: FormBuilder = new FormBuilder();
+  touchSpinnerForm!: FormGroup;
+  //#endregion
+
+  ngOnInit(): void {
+    this.touchSpinnerForm = new FormGroup({
+      spinnerValue: new FormControl<number>(50),
+    });
+  }
+}
