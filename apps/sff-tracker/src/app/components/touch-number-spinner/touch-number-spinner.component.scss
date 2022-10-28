@@ -1,3 +1,39 @@
 mat-form-field.mat-form-field {
-  font-size: 72px;
+  text-align: center;
+  width: 100%;
+}
+
+mat-form-field.mat-form-field input {
+  font-size: 144px;
+}
+
+.spinner-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.spinner-flex-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.spinner-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.number-input-container {
+  display: flex;
+  flex-grow: 0.5;
+}
+
+// Hide the Number Input Spin Box (https://stackoverflow.com/a/27935448)
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
 }

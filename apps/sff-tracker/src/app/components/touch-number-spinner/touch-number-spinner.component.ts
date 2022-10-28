@@ -18,4 +18,10 @@ export class TouchNumberSpinnerComponent implements OnInit {
       spinnerValue: new FormControl<number>(50),
     });
   }
+
+  changeSpinnerValue(step: number)
+  {
+    const touchSpinner = this.touchSpinnerForm.get('spinnerValue');
+    this.touchSpinnerForm.patchValue({'spinnerValue': touchSpinner ? touchSpinner.value + step : null})
+  }
 }
