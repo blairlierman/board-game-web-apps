@@ -21,6 +21,8 @@ mat-form-field.mat-form-field input {
 .spinner-button-group {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .spinner-button-group.reverse-wrap {
@@ -30,6 +32,10 @@ mat-form-field.mat-form-field input {
 .spinner-button-container {
   display: flex;
   justify-content: center;
+}
+
+.spinner-button-container button {
+  margin-bottom: 20%;
 }
 
 .number-input-container {
