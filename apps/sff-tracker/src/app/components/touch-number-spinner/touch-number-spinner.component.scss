@@ -14,8 +14,17 @@ mat-form-field.mat-form-field input {
 .spinner-flex-container {
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-evenly;
+}
+
+.spinner-button-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.spinner-button-group.reverse-wrap {
+  flex-wrap: wrap-reverse;
 }
 
 .spinner-button-container {
