@@ -1,9 +1,56 @@
 <form [formGroup]="touchSpinnerForm">
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Player Health</mat-label>
-      <input matInput type="number" formControlName="spinnerValue" />
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-  </p>
+  <div class="spinner-flex-container">
+    <div class="spinner-button-container">
+      <button
+        mat-fab
+        color="primary"
+        aria-label="Button to increment by 1"
+        (click)="changeSpinnerValue(1)"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="spinner-button-container">
+      <button
+        mat-fab
+        color="primary"
+        aria-label="Button to increment by ten"
+        (click)="changeSpinnerValue(10)"
+      >
+        +10
+      </button>
+    </div>
+    <div class="number-input-container">
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="number"
+          formControlName="spinnerValue"
+          max="999"
+        />
+        <mat-hint>Player Health</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="spinner-button-container">
+      <button
+        mat-fab
+        color="primary"
+        aria-label="Button to increment by ten"
+        (click)="changeSpinnerValue(-10)"
+      >
+        -10
+      </button>
+    </div>
+    <div class="spinner-button-container">
+      <button
+        mat-fab
+        color="primary"
+        aria-label="Button to decrement by 1"
+        (click)="changeSpinnerValue(-1)"
+      >
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+  </div>
 </form>
