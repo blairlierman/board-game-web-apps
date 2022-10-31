@@ -1,24 +1,26 @@
-<form [formGroup]="touchSpinnerForm">
+<form [formGroup]="touchSpinnerForm" [ngClass]="{ flipped: flipped }">
   <div class="spinner-flex-container">
-    <div class="spinner-button-container">
-      <button
-        mat-fab
-        color="primary"
-        aria-label="Button to increment by 1"
-        (click)="changeSpinnerValue(1)"
-      >
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-    <div class="spinner-button-container">
-      <button
-        mat-fab
-        color="primary"
-        aria-label="Button to increment by ten"
-        (click)="changeSpinnerValue(10)"
-      >
-        +10
-      </button>
+    <div class="spinner-button-group">
+      <div class="spinner-button-container">
+        <button
+          mat-fab
+          color="primary"
+          aria-label="Button to increment by 1"
+          (click)="changeSpinnerValue(1)"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="spinner-button-container">
+        <button
+          mat-fab
+          color="primary"
+          aria-label="Button to increment by ten"
+          (click)="changeSpinnerValue(10)"
+        >
+          +10
+        </button>
+      </div>
     </div>
     <div class="number-input-container">
       <mat-form-field appearance="fill">
@@ -31,26 +33,27 @@
         <mat-hint>Player Health</mat-hint>
       </mat-form-field>
     </div>
-
-    <div class="spinner-button-container">
-      <button
-        mat-fab
-        color="primary"
-        aria-label="Button to increment by ten"
-        (click)="changeSpinnerValue(-10)"
-      >
-        -10
-      </button>
-    </div>
-    <div class="spinner-button-container">
-      <button
-        mat-fab
-        color="primary"
-        aria-label="Button to decrement by 1"
-        (click)="changeSpinnerValue(-1)"
-      >
-        <mat-icon>remove</mat-icon>
-      </button>
+    <div class="spinner-button-group reverse-wrap">
+      <div class="spinner-button-container">
+        <button
+          mat-fab
+          color="primary"
+          aria-label="Button to increment by ten"
+          (click)="changeSpinnerValue(-10)"
+        >
+          -10
+        </button>
+      </div>
+      <div class="spinner-button-container">
+        <button
+          mat-fab
+          color="primary"
+          aria-label="Button to decrement by 1"
+          (click)="changeSpinnerValue(-1)"
+        >
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,10 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./touch-number-spinner.component.scss'],
 })
 export class TouchNumberSpinnerComponent implements OnInit {
+  //#region Component Inputs 
+  @Input() flipped = false;
+  //#endregion
+  
   //#region Reactive Forms Setup
   readonly formBuilder: FormBuilder = new FormBuilder();
   touchSpinnerForm!: FormGroup;

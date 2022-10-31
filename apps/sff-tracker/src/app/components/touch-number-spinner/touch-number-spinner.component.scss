@@ -14,13 +14,28 @@ mat-form-field.mat-form-field input {
 .spinner-flex-container {
   align-items: center;
   display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.spinner-button-group {
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
+}
+
+.spinner-button-group.reverse-wrap {
+  flex-wrap: wrap-reverse;
 }
 
 .spinner-button-container {
   display: flex;
   justify-content: center;
+}
+
+.spinner-button-container button {
+  margin-bottom: 20%;
 }
 
 .number-input-container {
