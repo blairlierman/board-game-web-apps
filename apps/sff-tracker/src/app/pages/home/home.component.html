@@ -1,9 +1,27 @@
-<div class="number-spinner-spacing">
-  <sff-touch-number-spinner [flipped]="true"></sff-touch-number-spinner>
+<div class="number-spinner-spacing reverse">
+  <sff-touch-number-spinner
+    [flipped]="true"
+    (valueChanged)="updatePlayerHealth(PLAYER_TWO, $event)"
+  ></sff-touch-number-spinner>
 </div>
-<mat-card *ngIf="players$ | async as players">{{ players[0].health }}</mat-card>
+<div class="health-card flipped">
+  <mat-card *ngIf="players$ | async as players"
+    ><mat-card-title class="mat-display-3">{{
+      players[0].health
+    }}</mat-card-title
+    ><mat-card-content>Opponent Health</mat-card-content>
+  </mat-card>
+</div>
+<div class="health-card">
+  <mat-card *ngIf="players$ | async as players"
+    ><mat-card-title class="mat-display-3">{{
+      players[1].health
+    }}</mat-card-title
+    ><mat-card-content>Opponent Health</mat-card-content>
+  </mat-card>
+</div>
 <div class="number-spinner-spacing">
   <sff-touch-number-spinner
-    (valueChanged)="updatePlayerHealth(1, $event)"
+    (valueChanged)="updatePlayerHealth(PLAYER_ONE, $event)"
   ></sff-touch-number-spinner>
 </div>

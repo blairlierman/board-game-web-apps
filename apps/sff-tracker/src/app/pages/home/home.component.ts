@@ -5,9 +5,14 @@ import { PlayerStore } from './home.store';
   selector: 'farming-game-remote-host-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [ PlayerStore ]
+  providers: [PlayerStore],
 })
 export class HomeComponent {
+  //#region Constants
+  readonly PLAYER_ONE = 1;
+  readonly PLAYER_TWO = 2;
+  //#endregion
+
   players$;
 
   constructor(private readonly playerStore: PlayerStore) {
@@ -15,6 +20,6 @@ export class HomeComponent {
   }
 
   updatePlayerHealth(playerId: number, health: number) {
-    this.playerStore.updatePlayer({playerId, health});
+    this.playerStore.updatePlayer({ playerId, health });
   }
 }
