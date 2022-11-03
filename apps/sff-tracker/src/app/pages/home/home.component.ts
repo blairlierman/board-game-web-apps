@@ -13,4 +13,8 @@ export class HomeComponent {
   constructor(private readonly playerStore: PlayerStore) {
     this.players$ = playerStore.players$;
   }
+
+  updatePlayerHealth(playerId: number, health: number) {
+    this.playerStore.updatePlayer({playerId, health});
+  }
 }

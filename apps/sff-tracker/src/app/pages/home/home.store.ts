@@ -9,7 +9,7 @@ export interface PlayerState {
 }
 
 const defaultState: PlayerState = {
-  players: [{health: 50}, {health: 50}],
+  players: [{playerId: 1, health: 50}, {playerId: 2, health: 50}],
 };
 
 @Injectable()
@@ -19,4 +19,15 @@ export class PlayerStore extends ComponentStore<PlayerState> {
   }
 
   readonly players$ = this.select(({ players }) => players);
+
+  readonly updatePlayer = this.updater((state, player: Player) => ({
+    players : state.players.map(p =>p.playerId === player.playerId
+        ? { ...p, health: player.health }
+        : p
+        )
+  }));
+
+  selectPlayer(playerId: number) {
+    return this.select((state) => state.players.find(p => p.playerId === playerId));
+  }
 }
