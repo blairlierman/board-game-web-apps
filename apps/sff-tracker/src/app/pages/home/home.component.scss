@@ -1,4 +1,25 @@
+.health-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1%;
+
+  mat-card-title {
+    margin: 0;
+    text-align: center;
+  }
+
+  &.flipped {
+    margin-top: unset;
+    margin-bottom: 1%;
+  }
+}
+
 .number-spinner-spacing {
   margin-top: 2%;
-  margin-bottom: 5%;
+
+  &.reverse {
+    margin-top: 5%;
+    margin-bottom: 2%;
+  }
 }
