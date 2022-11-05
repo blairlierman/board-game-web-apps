@@ -2,7 +2,7 @@
 
 This is an Nx monorepo for the collection of Angular-based Web Apps to support various Board and Card Games that I enjoy.
 
-#Apps
+## Apps
 ### Farming Game Remote Host (farming-game-remote-host)
 You want to play the Farming Game via video chat? This app will let you do that.
 
