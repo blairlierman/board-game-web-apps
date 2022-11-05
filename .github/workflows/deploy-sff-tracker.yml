@@ -13,16 +13,17 @@ jobs:
       - uses: actions/checkout@v3
         with:
             fetch-depth: 0
+            node-version: '16'
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+            node-version: '16'
       - uses: nrwl/nx-set-shas@v3
       - run: npm ci --legacy-peer-deps
   #   - run: npx nx workspace-lint
   #   - run: npx nx format:check
   #   - run: npx nx affected --target=lint --parallel=3
   #   - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
-      - run: npx nx build sff-tracker --parallel=3 --base-href="/sff-tracker/"
+      - run: npx nx build sff-tracker --parallel=3 --base-href="/board-game-web-apps/sff-tracker/"
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.4
         with:
