@@ -22,7 +22,7 @@ jobs:
   #   - run: npx nx format:check
   #   - run: npx nx affected --target=lint --parallel=3
   #   - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
-      - run: npx nx sff-tracker --target=build --parallel=3 --base-href="/sff-tracker/"
+      - run: npx nx build sff-tracker --parallel=3 --base-href="/sff-tracker/"
       - name: Step 3 - Use the Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
         with: 
