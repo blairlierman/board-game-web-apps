@@ -23,11 +23,12 @@ jobs:
   #   - run: npx nx affected --target=lint --parallel=3
   #   - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
       - run: npx nx build sff-tracker --parallel=3 --base-href="/sff-tracker/"
-      - name: Step 3 - Use the Upload Artifact GitHub Action
-        uses: actions/upload-artifact@v2
-        with: 
-          name: github-pages
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1.0.4
+        with:
+          # Path of the directory containing the static assets.
           path: dist/apps/sff-tracker
+        
   # Deploy job
   deploy:
     # Add a dependency to the build job
