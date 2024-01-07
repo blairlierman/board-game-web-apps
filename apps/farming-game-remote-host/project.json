@@ -1,0 +1,111 @@
+{
+  "name": "farming-game-remote-host",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    },
+    "@schematics/angular:application": {
+      "strict": true
+    }
+  },
+  "sourceRoot": "apps/farming-game-remote-host/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/farming-game-remote-host",
+        "index": "apps/farming-game-remote-host/src/index.html",
+        "main": "apps/farming-game-remote-host/src/main.ts",
+        "polyfills": "apps/farming-game-remote-host/src/polyfills.ts",
+        "tsConfig": "apps/farming-game-remote-host/tsconfig.app.json",
+        "assets": [
+          "apps/farming-game-remote-host/src/favicon.ico",
+          "apps/farming-game-remote-host/src/assets"
+        ],
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+          "apps/farming-game-remote-host/src/styles.scss"
+        ],
+        "scripts": [],
+        "vendorChunk": true,
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/farming-game-remote-host/src/environments/environment.ts",
+              "with": "apps/farming-game-remote-host/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": ""
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "buildTarget": "farming-game-remote-host:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "farming-game-remote-host:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "farming-game-remote-host:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/farming-game-remote-host/src/test.ts",
+        "polyfills": "apps/farming-game-remote-host/src/polyfills.ts",
+        "tsConfig": "apps/farming-game-remote-host/tsconfig.spec.json",
+        "karmaConfig": "apps/farming-game-remote-host/karma.conf.js",
+        "assets": [
+          "apps/farming-game-remote-host/src/favicon.ico",
+          "apps/farming-game-remote-host/src/assets"
+        ],
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+          "apps/farming-game-remote-host/src/styles.scss"
+        ],
+        "scripts": []
+      }
+    },
+    "deploy": {
+      "executor": "@angular/fire:deploy",
+      "options": {}
+    }
+  }
+}
