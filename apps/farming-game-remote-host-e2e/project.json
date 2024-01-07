@@ -1,0 +1,27 @@
+{
+  "name": "farming-game-remote-host-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@angular-devkit/build-angular:protractor",
+      "options": {
+        "protractorConfig": "apps/farming-game-remote-host-e2e/protractor.conf.js",
+        "devServerTarget": "farming-game-remote-host:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "farming-game-remote-host:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": "apps/farming-game-remote-host-e2e/tsconfig.json"
+      }
+    }
+  },
+  "implicitDependencies": ["farming-game-remote-host"],
+  "tags": []
+}
