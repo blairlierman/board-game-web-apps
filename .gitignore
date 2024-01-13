@@ -48,3 +48,5 @@ Thumbs.db
 
 # Angular cache files
 .angular
+
+.nx/cache
