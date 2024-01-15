@@ -21,7 +21,7 @@ export class TouchNumberSpinnerComponent implements OnInit, OnDestroy {
   @Input() flipped = false;
   //#endregion
 
-  //#region Component Inputs
+  //#region Component Outputs
   @Output() valueChanged = new EventEmitter();
   //#endregion
 
@@ -57,7 +57,6 @@ export class TouchNumberSpinnerComponent implements OnInit, OnDestroy {
       ? this.spinnerValueControl.value + step
       : null;
     this.touchSpinnerForm.patchValue({ spinnerValue: touchSpinnerValue });
-    this.valueChanged.emit(touchSpinnerValue);
   }
 
   ngOnDestroy(): void {
