@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PlayerStore } from './home.store';
 
 @Component({
@@ -17,6 +17,12 @@ export class HomeComponent {
 
   constructor(private readonly playerStore: PlayerStore) {
     this.players$ = playerStore.players$;
+  }
+
+  addArmor(playerId: number): void {
+    this.playerStore.addArmor(playerId);
+    //const updatedPlayer = this.playerStore.selectPlayer(playerId)
+    // this.playerStore.updatePlayer(playerId, )
   }
 
   updatePlayerHealth(playerId: number, health: number) {

@@ -1,4 +1,5 @@
 export interface Player {
-    playerId: number,
-    health: number;
+  playerId: number;
+  health: number;
+  armor?: number;
 }
