@@ -56,7 +56,10 @@ export class TouchNumberSpinnerComponent implements OnInit, OnDestroy {
     const touchSpinnerValue = this.spinnerValueControl
       ? this.spinnerValueControl.value + step
       : null;
-    this.touchSpinnerForm.patchValue({ spinnerValue: touchSpinnerValue });
+    this.touchSpinnerForm.patchValue(
+      { spinnerValue: touchSpinnerValue },
+      { emitEvent: false }
+    );
     this.valueChanged.emit(touchSpinnerValue);
   }
 
