@@ -12,24 +12,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-            fetch-depth: 0
-            node-version: '16'
+          fetch-depth: 0
+          node-version: '16'
       - uses: actions/setup-node@v3
         with:
-            node-version: '16'
+          node-version: '16'
       - uses: nrwl/nx-set-shas@v3
       - run: npm ci --legacy-peer-deps
-  #   - run: npx nx workspace-lint
-  #   - run: npx nx format:check
-  #   - run: npx nx affected --target=lint --parallel=3
-  #   - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
+      - name: Run sff-tracker unit tests with coverage threshold
+        run: npx nx test sff-tracker -- --runInBand --coverage --coverageReporters=text-summary --coverageThreshold='{"global":{"branches":80,"functions":80,"lines":80,"statements":80}}'
+      #   - run: npx nx workspace-lint
+      #   - run: npx nx format:check
+      #   - run: npx nx affected --target=lint --parallel=3
+      #   - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
       - run: npx nx build sff-tracker --parallel=3 --base-href="/sff-tracker/"
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.4
         with:
           # Path of the directory containing the static assets.
           path: dist/apps
-        
+
   # Deploy job
   deploy:
     # Add a dependency to the build job
@@ -37,8 +39,8 @@ jobs:
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
 
     # Deploy to the github-pages environment
     environment:
