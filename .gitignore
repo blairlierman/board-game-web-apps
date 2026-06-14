@@ -50,3 +50,5 @@ Thumbs.db
 .angular
 
 .nx/cache
+.claude/worktrees
+.claude/settings.local.json
