@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { PlayerStore } from './home.store';
 
 @Component({
-  selector: 'farming-game-remote-host-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  providers: [PlayerStore],
+    selector: 'farming-game-remote-host-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    providers: [PlayerStore],
+    standalone: false
 })
 export class HomeComponent {
   //#region Constants

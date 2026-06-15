@@ -11,10 +11,11 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'sff-touch-number-spinner',
-  templateUrl: './touch-number-spinner.component.html',
-  styleUrls: ['./touch-number-spinner.component.scss'],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'sff-touch-number-spinner',
+    templateUrl: './touch-number-spinner.component.html',
+    styleUrls: ['./touch-number-spinner.component.scss'],
+    standalone: false
 })
 export class TouchNumberSpinnerComponent implements OnInit, OnDestroy {
   //#region Component Inputs
