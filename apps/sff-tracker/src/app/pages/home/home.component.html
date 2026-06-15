@@ -5,20 +5,24 @@
   ></sff-touch-number-spinner>
 </div>
 <div class="health-card flipped">
-  <mat-card *ngIf="players$ | async as players"
-    ><mat-card-title class="mat-display-3">{{
+  @if (players$ | async; as players) {
+    <mat-card
+      ><mat-card-title class="mat-display-3">{{
       players[0].health
-    }}</mat-card-title
-    ><mat-card-content>Opponent Health</mat-card-content>
-  </mat-card>
+      }}</mat-card-title
+      ><mat-card-content>Opponent Health</mat-card-content>
+    </mat-card>
+  }
 </div>
 <div class="health-card">
-  <mat-card *ngIf="players$ | async as players"
-    ><mat-card-title class="mat-display-3">{{
+  @if (players$ | async; as players) {
+    <mat-card
+      ><mat-card-title class="mat-display-3">{{
       players[1].health
-    }}</mat-card-title
-    ><mat-card-content>Opponent Health</mat-card-content>
-  </mat-card>
+      }}</mat-card-title
+      ><mat-card-content>Opponent Health</mat-card-content>
+    </mat-card>
+  }
 </div>
 <div class="number-spinner-spacing">
   <sff-touch-number-spinner
