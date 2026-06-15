@@ -7,7 +7,6 @@ import { PlayerStore } from './home.store';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let playerStore: PlayerStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +17,6 @@ describe('HomeComponent', () => {
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    playerStore = TestBed.inject(PlayerStore);
     fixture.detectChanges();
   });
 
@@ -37,10 +35,7 @@ describe('HomeComponent', () => {
   });
 
   it('should update player health through the store', () => {
-    const updateSpy = jest.spyOn(
-      (component as any).playerStore,
-      'updatePlayer'
-    );
+    const updateSpy = jest.spyOn(component['playerStore'], 'updatePlayer');
     component.updatePlayerHealth(1, 25);
     expect(updateSpy).toHaveBeenCalledWith({
       playerId: 1,
