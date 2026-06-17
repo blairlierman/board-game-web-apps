@@ -33,6 +33,9 @@ jobs:
 
   # Deploy job
   deploy:
+    # Only deploy from main pushes
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
     # Add a dependency to the build job
     needs: build
 
