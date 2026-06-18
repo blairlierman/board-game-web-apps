@@ -72,5 +72,6 @@
       "!{projectRoot}/karma.conf.js"
     ]
   },
-  "nxCloudAccessToken": "YmNkMzMwMjItNjQwYS00MTEyLTkxZTgtYTkwYmQzMGFmOGEyfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "YmNkMzMwMjItNjQwYS00MTEyLTkxZTgtYTkwYmQzMGFmOGEyfHJlYWQtd3JpdGU=",
+  "analytics": false
 }
