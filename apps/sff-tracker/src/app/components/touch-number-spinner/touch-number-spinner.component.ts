@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -15,6 +16,7 @@ import { takeUntil } from 'rxjs/operators';
     selector: 'sff-touch-number-spinner',
     templateUrl: './touch-number-spinner.component.html',
     styleUrls: ['./touch-number-spinner.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TouchNumberSpinnerComponent implements OnInit, OnDestroy {

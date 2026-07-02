@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { PlayerStore } from './home.store';
 
 @Component({
@@ -6,6 +6,7 @@ import { PlayerStore } from './home.store';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     providers: [PlayerStore],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HomeComponent {
