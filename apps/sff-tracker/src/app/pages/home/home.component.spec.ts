@@ -24,14 +24,13 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should expose players$ from the store', (done) => {
-    component.players$.subscribe((players) => {
-      expect(players).toBeDefined();
-      expect(players.length).toBe(2);
-      expect(players[0].health).toBe(50);
-      expect(players[1].health).toBe(50);
-      done();
-    });
+  it('should expose players from the store', () => {
+    const players = component.players();
+
+    expect(players).toBeDefined();
+    expect(players.length).toBe(2);
+    expect(players[0].health).toBe(50);
+    expect(players[1].health).toBe(50);
   });
 
   it('should update player health through the store', () => {
