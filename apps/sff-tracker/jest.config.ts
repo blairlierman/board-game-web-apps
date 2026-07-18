@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'sff-tracker',
   preset: '../../jest.preset.js',
