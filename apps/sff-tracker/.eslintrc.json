@@ -24,7 +24,9 @@
             "prefix": "farming-game-remote-host",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/prefer-inject": "off",
+        "@angular-eslint/prefer-standalone": "off"
       }
     },
     {

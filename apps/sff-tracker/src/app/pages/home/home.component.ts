@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { PlayerStore } from './home.store';
 
 @Component({
@@ -6,18 +6,17 @@ import { PlayerStore } from './home.store';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   providers: [PlayerStore],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class HomeComponent {
   //#region Constants
   readonly PLAYER_ONE = 1;
   readonly PLAYER_TWO = 2;
   //#endregion
+  readonly players = this.playerStore.players;
 
-  players$;
-
-  constructor(private readonly playerStore: PlayerStore) {
-    this.players$ = playerStore.players$;
-  }
+  constructor(private readonly playerStore: PlayerStore) {}
 
   updatePlayerHealth(playerId: number, health: number) {
     this.playerStore.updatePlayer({ playerId, health });

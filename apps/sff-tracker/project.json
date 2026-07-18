@@ -4,15 +4,18 @@
   "projectType": "application",
   "sourceRoot": "apps/sff-tracker/src",
   "prefix": "sff",
+  "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/sff-tracker",
+        "outputPath": {
+          "base": "dist/apps/sff-tracker"
+        },
         "index": "apps/sff-tracker/src/index.html",
-        "main": "apps/sff-tracker/src/main.ts",
-        "polyfills": "apps/sff-tracker/src/polyfills.ts",
+        "polyfills": ["apps/sff-tracker/src/polyfills.ts"],
         "tsConfig": "apps/sff-tracker/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -23,7 +26,8 @@
           "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
           "apps/sff-tracker/src/styles.scss"
         ],
-        "scripts": []
+        "scripts": [],
+        "browser": "apps/sff-tracker/src/main.ts"
       },
       "configurations": {
         "production": {
@@ -48,18 +52,16 @@
           "outputHashing": "all"
         },
         "development": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
       "configurations": {
         "production": {
           "buildTarget": "sff-tracker:build:production"
@@ -67,25 +69,24 @@
         "development": {
           "buildTarget": "sff-tracker:build:development"
         }
-      },
-      "defaultConfiguration": "development"
+      }
     },
     "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "@angular/build:extract-i18n",
       "options": {
         "buildTarget": "sff-tracker:build"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/apps/sff-tracker"],
       "options": {
-        "jestConfig": "apps/sff-tracker/jest.config.ts"
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "coverage": true
+        }
       }
     }
-  },
-  "tags": []
+  }
 }

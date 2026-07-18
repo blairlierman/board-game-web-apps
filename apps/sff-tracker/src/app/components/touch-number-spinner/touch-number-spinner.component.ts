@@ -5,16 +5,19 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'sff-touch-number-spinner',
-  templateUrl: './touch-number-spinner.component.html',
-  styleUrls: ['./touch-number-spinner.component.scss'],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'sff-touch-number-spinner',
+    templateUrl: './touch-number-spinner.component.html',
+    styleUrls: ['./touch-number-spinner.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class TouchNumberSpinnerComponent implements OnInit, OnDestroy {
   //#region Component Inputs
@@ -56,7 +59,10 @@ export class TouchNumberSpinnerComponent implements OnInit, OnDestroy {
     const touchSpinnerValue = this.spinnerValueControl
       ? this.spinnerValueControl.value + step
       : null;
-    this.touchSpinnerForm.patchValue({ spinnerValue: touchSpinnerValue });
+    this.touchSpinnerForm.patchValue(
+      { spinnerValue: touchSpinnerValue },
+      { emitEvent: false }
+    );
     this.valueChanged.emit(touchSpinnerValue);
   }
 

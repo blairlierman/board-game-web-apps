@@ -1,7 +1,4 @@
-import { Injectable } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
-import { Observable } from 'rxjs';
-import { withLatestFrom, tap } from 'rxjs/operators';
+import { computed, Injectable, Signal, signal } from '@angular/core';
 import { Player } from '../../models/player.model';
 
 export interface PlayerState {
@@ -9,25 +6,31 @@ export interface PlayerState {
 }
 
 const defaultState: PlayerState = {
-  players: [{playerId: 1, health: 50}, {playerId: 2, health: 50}],
+  players: [
+    { playerId: 1, health: 50 },
+    { playerId: 2, health: 50 },
+  ],
 };
 
 @Injectable()
-export class PlayerStore extends ComponentStore<PlayerState> {
-  constructor() {
-    super(defaultState);
+export class PlayerStore {
+  private readonly state = signal<PlayerState>(defaultState);
+
+  readonly players = computed(() => this.state().players);
+
+  updatePlayer(player: Player): void {
+    this.state.update((state) => ({
+      players: state.players.map((currentPlayer) =>
+        currentPlayer.playerId === player.playerId
+          ? { ...currentPlayer, health: player.health }
+          : currentPlayer
+      ),
+    }));
   }
 
-  readonly players$ = this.select(({ players }) => players);
-
-  readonly updatePlayer = this.updater((state, player: Player) => ({
-    players : state.players.map(p =>p.playerId === player.playerId
-        ? { ...p, health: player.health }
-        : p
-        )
-  }));
-
-  selectPlayer(playerId: number) {
-    return this.select((state) => state.players.find(p => p.playerId === playerId));
+  selectPlayer(playerId: number): Signal<Player | undefined> {
+    return computed(() =>
+      this.players().find((player) => player.playerId === playerId)
+    );
   }
 }
