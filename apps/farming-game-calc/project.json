@@ -1,0 +1,115 @@
+{
+  "name": "farming-game-calc",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/farming-game-calc/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/farming-game-calc",
+        "browser": "apps/farming-game-calc/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/farming-game-calc/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/farming-game-calc/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/farming-game-calc/src/assets",
+            "output": "assets"
+          },
+          {
+            "glob": "favicon.ico",
+            "input": "apps/farming-game-calc/src",
+            "output": "/"
+          },
+          {
+            "glob": "manifest.webmanifest",
+            "input": "apps/farming-game-calc/src",
+            "output": "/"
+          },
+          {
+            "glob": "404.html",
+            "input": "apps/farming-game-calc/src",
+            "output": "/"
+          }
+        ],
+        "styles": [
+          "apps/farming-game-calc/src/styles.scss",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/farming-game-calc/src/environments/environment.ts",
+              "with": "apps/farming-game-calc/src/environments/environment.prod.ts"
+            }
+          ],
+          "serviceWorker": "apps/farming-game-calc/ngsw-config.json",
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "production": {
+          "buildTarget": "farming-game-calc:build:production"
+        },
+        "development": {
+          "buildTarget": "farming-game-calc:build:development"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/farming-game-calc/jest.config.ts",
+        "tsConfig": "apps/farming-game-calc/tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "farming-game-calc:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/farming-game-calc/browser",
+        "spa": true
+      }
+    }
+  }
+}
