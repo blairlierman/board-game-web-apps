@@ -9,10 +9,10 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "generators": {
     "@nx/angular:application": {
-      "style": "scss",
+      "e2eTestRunner": "cypress",
       "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "style": "scss",
+      "unitTestRunner": "jest"
     },
     "@nx/angular:library": {
       "linter": "eslint",
@@ -103,6 +103,11 @@
           "codeCoverage": true
         }
       }
+    },
+    "@angular/build:application": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "namedInputs": {
@@ -137,6 +142,15 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
+      }
+    },
+    {
+      "plugin": "@nx/cypress/plugin",
+      "options": {
+        "targetName": "cypress:e2e",
+        "openTargetName": "open-cypress",
+        "componentTestingTargetName": "component-test",
+        "ciTargetName": "e2e-ci"
       }
     }
   ]

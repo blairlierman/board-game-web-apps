@@ -1,0 +1,18 @@
+<div class="d-flex flex-nowrap {{ class }}">
+  <label for="cashAmount" class="text-nowrap align-self-center me-3">
+    <ng-content></ng-content>
+  </label>
+  <div class="input-group">
+    <span class="input-group-text">$</span>
+    <span *ngIf="showNegative" class="input-group-text">-</span>
+    <input
+      type="number"
+      id="cashAmount"
+      #cashAmount
+      class="form-control"
+      aria-label="Amount (to the nearest hundred)"
+      [ngModel]="inputValue"
+      (ngModelChange)="onInputChanged($event)"
+    />
+  </div>
+</div>

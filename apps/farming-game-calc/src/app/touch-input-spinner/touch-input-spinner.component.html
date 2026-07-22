@@ -1,0 +1,33 @@
+<div class="row {{ class }}">
+  <label for="{{ id }}" class="col-5 col-form-label">
+    <ng-content></ng-content>
+  </label>
+  <div class="input-group input-group-lg col-7">
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      id="button-plus"
+      (click)="increment()"
+    >
+      +
+    </button>
+    <input
+      type="number"
+      class="form-control"
+      id="{{ id }}"
+      #spinner
+      min="{{ min }}"
+      step="{{ step }}"
+      [ngModel]="inputValue"
+      (ngModelChange)="onInputChanged($event)"
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      id="button-minus"
+      (click)="decrement()"
+    >
+      -
+    </button>
+  </div>
+</div>
