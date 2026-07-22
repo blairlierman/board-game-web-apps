@@ -10,10 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: '24'
       - uses: nrwl/nx-set-shas@v3
@@ -26,7 +26,7 @@ jobs:
       #   - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
       - run: npx nx build sff-tracker --parallel=3 --skipNxCache --base-href="/sff-tracker/"
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v1.0.4
+        uses: actions/upload-pages-artifact@v3
         with:
           # Path of the directory containing the static assets.
           path: dist/apps
@@ -54,4 +54,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
