@@ -12,6 +12,7 @@ import { DollarAmountInputComponent } from './dollar-amount-input/dollar-amount-
 import { TouchCheckboxComponent } from './touch-checkbox/touch-checkbox.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { provideServiceWorker } from '@angular/service-worker';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { provideServiceWorker } from '@angular/service-worker';
     TouchCheckboxComponent,
     AboutPageComponent,
     MainPageComponent,
+    SettingsPageComponent,
   ],
   imports: [
     BrowserModule,

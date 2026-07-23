@@ -5,6 +5,19 @@
   "sourceRoot": "apps/farming-game-calc-e2e/src",
   "tags": [],
   "implicitDependencies": ["farming-game-calc"],
-  "// targets": "to see all targets run: nx show project farming-game-calc-e2e --web",
-  "targets": {}
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/farming-game-calc-e2e/cypress.config.ts",
+        "devServerTarget": "farming-game-calc:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "farming-game-calc:serve:production"
+        }
+      }
+    }
+  }
 }
