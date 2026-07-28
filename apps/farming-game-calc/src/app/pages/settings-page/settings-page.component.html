@@ -1,0 +1,68 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="ms-2" routerLink="" aria-label="Back to main page">
+    <fa-icon
+      [icon]="faBackIcon"
+      class="fa fa-chevron-left text-light pe-2"
+    ></fa-icon>
+  </a>
+  <span class="text-light ms-2 me-2 flex-grow-1">Settings</span>
+</nav>
+
+<div class="container mt-2">
+  <div class="card mb-2">
+    <div class="card-body">
+      <h5 class="card-title">Price Settings</h5>
+      <p class="card-text text-muted mb-3">
+        Changes are saved to this browser tab using session storage.
+      </p>
+      <div class="row g-2">
+        <div class="col-12 col-md-6" *ngFor="let field of priceFields">
+          <label class="form-label" [for]="field.key">{{ field.label }}</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input
+              [id]="field.key"
+              class="form-control"
+              type="number"
+              min="0"
+              [ngModel]="settings[field.key]"
+              (ngModelChange)="onPriceChanged(field.key, $event)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Players</h5>
+      <app-touch-input-spinner
+        id="playerCount"
+        [step]="1"
+        [min]="1"
+        [ngModel]="settings.playerCount"
+        (ngModelChange)="onPlayerCountChanged($event)"
+      >
+        Number of Players
+      </app-touch-input-spinner>
+
+      <div class="mt-3" *ngFor="let slot of playerSlots">
+        <label class="form-label" [for]="'playerCharacter' + slot">
+          Player {{ slot + 1 }} Character
+        </label>
+        <select
+          class="form-select"
+          [id]="'playerCharacter' + slot"
+          [ngModel]="settings.playerCharacters[slot]"
+          (ngModelChange)="onPlayerCharacterChanged(slot, $event)"
+        >
+          <option value="">Select a character</option>
+          <option *ngFor="let character of characters" [ngValue]="character">
+            {{ character }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

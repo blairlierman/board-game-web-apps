@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { faGear, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { SettingsService } from '../../settings/settings.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,9 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent {
-  totalAmount = 40000;
-  hayAmount = 20000;
-  grainAmount = 20000;
+  faSettingsIcon: IconDefinition = faGear;
+  totalAmount = 0;
+  hayAmount = 0;
+  grainAmount = 0;
   fruitAmount = 0;
   cowAmount = 0;
   tractorAmount = 0;
@@ -26,40 +29,50 @@ export class MainPageComponent {
   hasTractor = false;
   hasHarvesterValue = false;
 
+  constructor(private readonly settingsService: SettingsService) {
+    this.recalculateFromCurrentValues();
+    this.calculateTotal();
+  }
+
   hayAcresChanged(input: number) {
-    console.log(input);
     this.hayAcres = input;
-    this.hayAmount = input * 2000;
+    this.hayAmount = input * this.settingsService.getSettings().hayPricePerAcre;
     this.calculateTotal();
   }
 
   grainAcresChanged(input: number) {
     this.grainAcres = input;
-    this.grainAmount = input * 2000;
+    this.grainAmount =
+      input * this.settingsService.getSettings().grainPricePerAcre;
     this.calculateTotal();
   }
 
   fruitAcresChanged(input: number) {
     this.fruitAcres = input;
-    this.fruitAmount = input * 5000;
+    this.fruitAmount =
+      input * this.settingsService.getSettings().fruitPricePerAcre;
     this.calculateTotal();
   }
 
   cowsChanged(input: number) {
     this.numberOfCows = input;
-    this.cowAmount = input * 500;
+    this.cowAmount = input * this.settingsService.getSettings().cowPrice;
     this.calculateTotal();
   }
 
   tractorChanged(checked: boolean) {
     this.hasTractor = checked;
-    this.tractorAmount = checked ? 10000 : 0;
+    this.tractorAmount = checked
+      ? this.settingsService.getSettings().tractorPrice
+      : 0;
     this.calculateTotal();
   }
 
   harvesterChanged(checked: boolean) {
     this.hasHarvesterValue = checked;
-    this.harvesterAmount = checked ? 10000 : 0;
+    this.harvesterAmount = checked
+      ? this.settingsService.getSettings().harvesterPrice
+      : 0;
     this.calculateTotal();
   }
 
@@ -102,15 +115,19 @@ export class MainPageComponent {
     this.debt = null;
     this.hasHarvesterValue = false;
     this.hasTractor = false;
-    this.totalAmount = 40000;
-    this.hayAmount = 20000;
-    this.grainAmount = 20000;
-    this.fruitAmount = 0;
-    this.cowAmount = 0;
-    this.tractorAmount = 0;
-    this.harvesterAmount = 0;
+    this.recalculateFromCurrentValues();
     this.cashAmount = 0;
     this.debtAmount = 0;
     this.calculateTotal();
+  }
+
+  private recalculateFromCurrentValues() {
+    const settings = this.settingsService.getSettings();
+    this.hayAmount = this.hayAcres * settings.hayPricePerAcre;
+    this.grainAmount = this.grainAcres * settings.grainPricePerAcre;
+    this.fruitAmount = (this.fruitAcres || 0) * settings.fruitPricePerAcre;
+    this.cowAmount = (this.numberOfCows || 0) * settings.cowPrice;
+    this.tractorAmount = this.hasTractor ? settings.tractorPrice : 0;
+    this.harvesterAmount = this.hasHarvesterValue ? settings.harvesterPrice : 0;
   }
 }

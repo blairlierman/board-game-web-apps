@@ -7,22 +7,24 @@ import { TouchCheckboxComponent } from '../../touch-checkbox/touch-checkbox.comp
 import { TouchInputSpinnerComponent } from '../../touch-input-spinner/touch-input-spinner.component';
 import { DollarAmountInputComponent } from '../../dollar-amount-input/dollar-amount-input.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  SettingsService,
+  SETTINGS_STORAGE_KEY,
+} from '../../settings/settings.service';
 
 describe('MainPageComponent', () => {
   beforeEach(waitForAsync(() => {
+    sessionStorage.removeItem(SETTINGS_STORAGE_KEY);
+
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        FormsModule,
-        FontAwesomeModule
-      ],
+      imports: [RouterTestingModule, FormsModule, FontAwesomeModule],
       declarations: [
         MainPageComponent,
         TouchCheckboxComponent,
-        TouchCheckboxComponent,
         TouchInputSpinnerComponent,
-        DollarAmountInputComponent
+        DollarAmountInputComponent,
       ],
+      providers: [SettingsService],
     }).compileComponents();
   }));
 
@@ -43,7 +45,9 @@ describe('MainPageComponent', () => {
     const fixture = TestBed.createComponent(MainPageComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#totalAmount').textContent).toContain('$40,000');
+    expect(compiled.querySelector('#totalAmount').textContent).toContain(
+      '$40,000',
+    );
   });
 
   it('should calculate the total amount from all different amounts', () => {
@@ -88,7 +92,6 @@ describe('MainPageComponent', () => {
     expect(app.hayAcres).toEqual(100);
     expect(app.hayAmount).toEqual(200000);
     expect(app.totalAmount).toEqual(220000); // includes Grain Amount
-
   });
 
   it('should update Grain acres and amounts when Grain acres are changed', () => {
@@ -100,7 +103,6 @@ describe('MainPageComponent', () => {
     expect(app.grainAcres).toEqual(100);
     expect(app.grainAmount).toEqual(200000);
     expect(app.totalAmount).toEqual(220000); // includes Hay Amount
-
   });
 
   it('should update Fruit acres and amounts when Fruit acres are changed', () => {
@@ -112,7 +114,6 @@ describe('MainPageComponent', () => {
     expect(app.fruitAcres).toEqual(100);
     expect(app.fruitAmount).toEqual(500000);
     expect(app.totalAmount).toEqual(540000); // includes Hay and Grain Amounts
-
   });
 
   it('should update number of cows and amounts when Cows are changed', () => {
@@ -124,7 +125,6 @@ describe('MainPageComponent', () => {
     expect(app.numberOfCows).toEqual(100);
     expect(app.cowAmount).toEqual(50000);
     expect(app.totalAmount).toEqual(90000); // includes Hay and Grain Amounts
-
   });
 
   it('should update total amount when Has Tractor is changed', () => {
@@ -142,7 +142,6 @@ describe('MainPageComponent', () => {
     expect(app.hasTractor).toBeFalsy();
     expect(app.tractorAmount).toEqual(0);
     expect(app.totalAmount).toEqual(40000); // includes Hay and Grain Amounts (40000)
-
   });
 
   it('should update total amount when Has Harvested is changed', () => {
@@ -252,6 +251,39 @@ describe('MainPageComponent', () => {
     expect(app.hasHarvesterValue).toBeFalsy();
     expect(app.cashInHand).toBeNull();
     expect(app.debt).toBeNull();
+  });
 
+  it('should use customized settings prices in calculations', () => {
+    const settingsService = TestBed.inject(SettingsService);
+    settingsService.setPrice('hayPricePerAcre', 3000);
+
+    const fixture = TestBed.createComponent(MainPageComponent);
+    const app: MainPageComponent = fixture.debugElement.componentInstance;
+
+    app.hayAcresChanged(20);
+
+    expect(app.hayAmount).toEqual(60000);
+    expect(app.totalAmount).toEqual(80000);
+  });
+
+  it('should keep customized settings on reset', () => {
+    const settingsService = TestBed.inject(SettingsService);
+    settingsService.setPrice('hayPricePerAcre', 3000);
+    settingsService.setPrice('grainPricePerAcre', 2500);
+
+    const fixture = TestBed.createComponent(MainPageComponent);
+    const app: MainPageComponent = fixture.debugElement.componentInstance;
+
+    app.hayAcresChanged(5);
+    app.grainAcresChanged(5);
+    app.cowsChanged(10);
+
+    app.onResetClicked();
+
+    expect(app.hayAmount).toEqual(30000);
+    expect(app.grainAmount).toEqual(25000);
+    expect(app.totalAmount).toEqual(55000);
+    expect(app.fruitAmount).toEqual(0);
+    expect(app.cowAmount).toEqual(0);
   });
 });
