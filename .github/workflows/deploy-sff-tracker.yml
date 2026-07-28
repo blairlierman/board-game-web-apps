@@ -25,11 +25,17 @@ jobs:
       #   - run: npx nx affected --target=lint --parallel=3
       #   - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
       - run: npx nx build sff-tracker --parallel=3 --skipNxCache --base-href="/sff-tracker/"
+      - run: npx nx build farming-game-calc --parallel=3 --skipNxCache --base-href="/farming-game-calc/"
+      - name: Prepare Pages artifact directories
+        run: |
+          mkdir -p dist/pages/sff-tracker dist/pages/farming-game-calc
+          cp -R dist/apps/sff-tracker/browser/. dist/pages/sff-tracker/
+          cp -R dist/apps/farming-game-calc/browser/. dist/pages/farming-game-calc/
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Path of the directory containing the static assets.
-          path: dist/apps
+          path: dist/pages
 
   # Deploy job
   deploy:
